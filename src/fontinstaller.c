@@ -199,7 +199,7 @@ void cli_install(char* executable_name, char* name) {
 
     curl_easy_perform(curl);
     curl_easy_cleanup(curl);
-    printf("%s has been successfuly installed.\n\e[?25h", name);
+    printf("\n%s has been successfuly installed.\n\e[?25h", name);
 }
 
 void cli_set(char* executable_name, char* name) {
@@ -216,6 +216,7 @@ void cli_set(char* executable_name, char* name) {
     }
 
     copy(path_by_font_name(name), TERMUX_FONT_PATH);
-    printf("%s has been set.\n", name);
+    printf("setting %s...\n", name);
+    sleep(1);
     system("termux-reload-settings");
 }

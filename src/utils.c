@@ -19,7 +19,7 @@ bool check_fonts_directory(void) {
 }
 
 char** list_installed_fonts(void) {
-    char** fonts = malloc(sizeof(char*));
+    char** fonts = malloc(sizeof(char));
     size_t fonts_size = 0;
 
     DIR* fonts_directory = opendir(FONTS_DIRECTORY);
@@ -30,11 +30,10 @@ char** list_installed_fonts(void) {
             continue;
 
         fonts = realloc(fonts, sizeof(fonts) * (1 + fonts_size));
-        fonts[fonts_size] = malloc(sizeof(strlen(reader->d_name)));
-        memcpy(fonts[fonts_size++], reader->d_name, strlen(reader->d_name));
+        fonts[fonts_size++] = reader->d_name;
     }
 
-    return fonts_size ? fonts : NULL;
+    return fonts;
 }
 
 bool font_is_installed(char* name) {
