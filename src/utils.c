@@ -122,6 +122,35 @@ char* font_path_as_name(char* font_path) {
     return result;
 }
 
+char* font_name_as_path(char* font_name) {
+    char* result = malloc(strlen(font_name) + 5);
+    snprintf(result, strlen(font_name) + 5, "%s.ttf", font_name);
+    return result;
+}
+
+char* path_by_font_name(char* font_name) {
+    char* path = malloc(strlen(FONTS_DIRECTORY) + strlen(font_name) + 6);
+    snprintf(path, strlen(FONTS_DIRECTORY) + strlen(font_name) + 6, "%s/%s.ttf", FONTS_DIRECTORY, font_name);
+    return path;
+}
+
+void copy(char* which, char* where) {
+    FILE* which_file = fopen(which, "r");
+    FILE* where_file = fopen(where, "w");
+    
+    printf("%s\n%s\n", which, where);
+
+    fseek(which_file, 0, SEEK_END);
+    long size = ftell(which_file);
+    fseek(which_file, 0, SEEK_SET);
+    char* which_buffer = malloc(size);
+    fread(which_buffer, 1, size, which_file);
+
+    fwrite(which_buffer, 1, size, where_file);
+    fclose(where_file);
+    fclose(which_file);
+}
+
 int getch(void) {
     struct termios old_attribute, new_attribute;
     tcgetattr(STDIN_FILENO, &old_attribute);

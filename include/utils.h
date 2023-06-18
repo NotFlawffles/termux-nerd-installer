@@ -2,6 +2,7 @@
 #define UTILS_H
 
 #define TERMUX_DIRECTORY "environment"
+#define TERMUX_FONT_PATH "environment/font.ttf"
 #define FONTS_DIRECTORY  "environment/fonts"
 
 typedef struct {
@@ -19,6 +20,9 @@ NerdFont** list_available_fonts(void);
 unsigned short get_terminal_width(void);
 char* get_url(char* name);
 char* font_path_as_name(char* font_path);
+char* font_name_as_path(char* font_name);
+char* path_by_font_name(char* font_name);
+void copy(char* which, char* where);
 int getch(void);
 
 #endif /* UTILS_H */

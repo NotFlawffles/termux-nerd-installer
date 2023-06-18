@@ -84,6 +84,7 @@ void cli_list_installed_fonts(void);
 void cli_list_available_fonts(void);
 void cli_remove(char* executable_name, char* name);
 void cli_install(char* executable_name, char* name);
+void cli_set(char* executable_name, char* name);
 int random_range(int minimum, int maximum);
 
 #ifdef __cplsuplus

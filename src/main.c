@@ -27,6 +27,9 @@ int main(int argc, char** argv) {
     else if (memcmp(argv[1], "install", strlen(argv[1])) == 0)
         cli_install(*argv, argv[2]);
 
+    else if (memcmp(argv[1], "set", strlen(argv[1])) == 0)
+        cli_set(*argv, argv[2]);
+
     else
         fprintf(stderr, "%s: Unknown command \"%s\".\n", *argv, argv[1]);
 }

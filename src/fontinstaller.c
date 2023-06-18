@@ -92,10 +92,8 @@ void cli_list_available_fonts(void) {
 
 void cli_remove(char* executable_name, char* name) {
     char** installed_fonts = list_installed_fonts();
-    char* name_as_ttf = malloc(strlen(name) + 5);
-    snprintf(name_as_ttf, strlen(name) + 5, "%s.ttf", name);
-    char* path = malloc(strlen(FONTS_DIRECTORY) + strlen(name) + 6);
-    snprintf(path, strlen(FONTS_DIRECTORY) + strlen(name) + 6, "%s/%s.ttf", FONTS_DIRECTORY, name);
+    char *name_as_path = font_name_as_path(name);
+    char* path = path_by_font_name(name);
     
     if (!installed_fonts) {
         printf("You have no installed fonts yet.\n");
@@ -103,7 +101,7 @@ void cli_remove(char* executable_name, char* name) {
     }
 
     for (int i = 0; installed_fonts[i]; i++)
-        if (memcmp(installed_fonts[i], name_as_ttf, strlen(installed_fonts[i])) == 0) {
+        if (memcmp(installed_fonts[i], name_as_path, strlen(installed_fonts[i])) == 0) {
             printf("Are you sure? (y/N): ");
         
             if (getch() == 'y')
@@ -203,4 +201,20 @@ void cli_install(char* executable_name, char* name) {
     curl_easy_perform(curl);
     curl_easy_cleanup(curl);
     printf("%s has been successfuly installed.\n\e[?25h", name);
+}
+
+void cli_set(char* executable_name, char* name) {
+    char** installed_fonts = list_installed_fonts();
+
+    if (!installed_fonts) {
+        printf("You have no installed fonts yet.\n");
+        return;
+    }
+
+    if (!font_is_installed(name)) {
+        printf("%s: %s is not installed.\n", executable_name, name);
+        return;
+    }
+
+    copy(path_by_font_name(name), TERMUX_FONT_PATH);
 }
