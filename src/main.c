@@ -6,6 +6,14 @@ void help_message(char* executable_name) {
 }
 
 int main(int argc, char** argv) {
+    if (!is_termux_enviroment()) {
+        fprintf(stderr, "Termux environment could not be found.\n");
+        return 1;
+    }
+
+    if (!check_fonts_directory())
+        mkdir(FONTS_DIRECTORY, 0700);
+
     if (argc < 3) {
         help_message(*argv);
         return 1;

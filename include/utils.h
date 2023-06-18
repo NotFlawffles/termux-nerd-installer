@@ -1,9 +1,9 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#define TERMUX_DIRECTORY "environment"
-#define TERMUX_FONT_PATH "environment/font.ttf"
-#define FONTS_DIRECTORY  "environment/fonts"
+#define TERMUX_DIRECTORY "/data/data/com.termux/files/home/.termux"
+#define TERMUX_FONT_PATH TERMUX_DIRECTORY "/font.ttf"
+#define FONTS_DIRECTORY  TERMUX_DIRECTORY "/fonts"
 
 typedef struct {
     char* name;

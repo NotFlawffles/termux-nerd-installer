@@ -138,8 +138,6 @@ void copy(char* which, char* where) {
     FILE* which_file = fopen(which, "r");
     FILE* where_file = fopen(where, "w");
     
-    printf("%s\n%s\n", which, where);
-
     fseek(which_file, 0, SEEK_END);
     long size = ftell(which_file);
     fseek(which_file, 0, SEEK_SET);

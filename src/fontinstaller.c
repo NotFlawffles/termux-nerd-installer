@@ -177,18 +177,17 @@ void cli_install(char* executable_name, char* name) {
 
     FILE* file = fopen(path, "w");
 
-    printf("Downloading %s will start shortly...\n", name);
+    printf("Downloading %s...\n", name);
 
     char* splash_text[] = {
         "this will not take long, will it?",
         "oh shoot",
         "let us get monofied!",
         "meow",
-        "i stole this download bar",
         "hai meqa :P"
     };
 
-    char* random_splash_text = splash_text[random_range(0, 5)];
+    char* random_splash_text = splash_text[random_range(0, 4)];
 
     printf("\033[3m%s\033[0m\n\n", random_splash_text);
 
@@ -217,4 +216,6 @@ void cli_set(char* executable_name, char* name) {
     }
 
     copy(path_by_font_name(name), TERMUX_FONT_PATH);
+    printf("%s has been set.\n", name);
+    system("termux-reload-settings");
 }
