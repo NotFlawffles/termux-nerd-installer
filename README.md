@@ -12,5 +12,6 @@ This project is neither associated with [Termux](https://github.com/termux/termu
 ## Installation
 ```sh
 git clone https://github.com/notflawffles/termux-nerd-installer.git
-cd termux-nerd-installer && make install
+cd termux-nerd-installer
+make install
 ```
