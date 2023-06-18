@@ -115,6 +115,8 @@ void cli_remove(char* executable_name, char* name) {
 }
 
 void cleanup(int sig) {
+    (void) sig;
+
     if (Ongoing) {
         printf("\ncleaning...\n");
         remove(Ongoing);
