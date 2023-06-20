@@ -218,7 +218,6 @@ void cli_set(char* executable_name, char* name) {
     }
 
     copy(path_by_font_name(name), TERMUX_FONT_PATH);
-    printf("setting %s...\n", name);
-    sleep(1);
+    sleep(3);
     system("termux-reload-settings");
 }
