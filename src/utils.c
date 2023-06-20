@@ -115,12 +115,6 @@ char* get_url(char* name) {
     return NULL;
 }
 
-char* font_path_as_name(char* font_path) {
-    char* result = malloc(strlen(font_path) - 4);
-    memcpy(result, font_path, strlen(font_path) - 4);
-    return result;
-}
-
 char* font_name_as_path(char* font_name) {
     char* result = malloc(strlen(font_name) + 5);
     snprintf(result, strlen(font_name) + 5, "%s.ttf", font_name);

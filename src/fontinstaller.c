@@ -13,7 +13,7 @@ void cli_list_installed_fonts(void) {
     printf("\n\033[36mInstalled fonts:\033[0m\n");
 
     for (int i = 0; installed_fonts[i]; i++)
-        printf("    %s\n", font_path_as_name(installed_fonts[i]));
+        printf("    %s\n", installed_fonts[i]);
     
     putc('\n', stdout);
 }
