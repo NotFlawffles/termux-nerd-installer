@@ -116,7 +116,7 @@ char* get_url(char* name) {
 }
 
 char* font_path_as_name(char* font_path) {
-    char* result = malloc(strlen(font_path - 4));
+    char* result = malloc(strlen(font_path) - 4);
     memcpy(result, font_path, strlen(font_path) - 4);
     return result;
 }
