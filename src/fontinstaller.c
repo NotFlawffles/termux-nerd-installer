@@ -217,7 +217,7 @@ void cli_set(char* executable_name, char* name) {
         return;
     }
 
+    remove(TERMUX_FONT_PATH);
     copy(path_by_font_name(name), TERMUX_FONT_PATH);
-    sleep(3);
     system("termux-reload-settings");
 }
