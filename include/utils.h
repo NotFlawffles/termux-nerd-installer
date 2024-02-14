@@ -12,7 +12,7 @@ typedef struct {
 
 NerdFont* new_nerd_font(char* name, char* url);
 
-bool is_termux_enviroment(void);
+bool is_termux_environment(void);
 bool check_fonts_directory(void);
 bool font_is_installed(char* name);
 char** list_installed_fonts(void);

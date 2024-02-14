@@ -8,7 +8,7 @@ NerdFont* new_nerd_font(char* name, char* url) {
     return nerd_font;
 }
 
-bool is_termux_enviroment(void) {
+bool is_termux_environment(void) {
     struct stat stat_buffer;
     return stat(TERMUX_DIRECTORY, &stat_buffer) == 0;
 }

@@ -6,7 +6,7 @@ void help_message(char* executable_name) {
 }
 
 int main(int argc, char** argv) {
-    if (!is_termux_enviroment()) {
+    if (!is_termux_environment()) {
         fprintf(stderr, "Termux environment could not be found.\n");
         return 1;
     }
