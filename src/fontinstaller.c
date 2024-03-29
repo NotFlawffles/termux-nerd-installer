@@ -14,7 +14,7 @@ void cli_list_installed_fonts(void) {
 
     for (int i = 0; installed_fonts[i]; i++)
         printf("    %s\n", installed_fonts[i]);
-    
+
     putc('\n', stdout);
 }
 
@@ -79,22 +79,26 @@ void cli_list_available_fonts(void) {
 
     putc('\n', stdout);
 
+    unsigned short terminal_width = get_terminal_width();
+
     for (int i = 0; i < 55; i++) {
+        unsigned short padding = (terminal_width > strlen(available_fonts[i])) ? (terminal_width - strlen(available_fonts[i])) : 0;
         printf("    - %s", available_fonts[i]);
         bool is_installed = font_is_installed(available_fonts[i]);
-        
-        for (unsigned short j = 0; j < get_terminal_width() / 2 - strlen(available_fonts[i]); j++)
+
+        for (unsigned short j = 0; j < padding; j++)
             putc(' ', stdout);
 
         printf("%s\n\n", is_installed ? "\033[32minstalled\033[0m" : "\033[37mnot installed\033[0m");
     }
+
 }
 
 void cli_remove(char* executable_name, char* name) {
     char** installed_fonts = list_installed_fonts();
     char *name_as_path = font_name_as_path(name);
     char* path = path_by_font_name(name);
-    
+
     if (!installed_fonts) {
         printf("You have no installed fonts yet.\n");
         return;
@@ -103,7 +107,7 @@ void cli_remove(char* executable_name, char* name) {
     for (int i = 0; installed_fonts[i]; i++)
         if (memcmp(installed_fonts[i], name_as_path, strlen(installed_fonts[i])) == 0) {
             printf("Are you sure? (y/N): ");
-        
+
             if (getch() == 'y')
                 remove(path);
 
@@ -157,7 +161,7 @@ int download_progress(void* pointer, double total_to_download, double now_downlo
 
     printf("]");
     fflush(stdout);
-    return 0; 
+    return 0;
 }
 
 void cli_install(char* executable_name, char* name) {
