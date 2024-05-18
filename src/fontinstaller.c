@@ -79,11 +79,14 @@ void cli_list_available_fonts(void) {
 
     putc('\n', stdout);
 
+    unsigned short terminal_width = get_terminal_width();
+
     for (int i = 0; i < 55; i++) {
+        unsigned short padding = (terminal_width > strlen(available_fonts[i])) ? (terminal_width - strlen(available_fonts[i])) : 0;
         printf("    - %s", available_fonts[i]);
         bool is_installed = font_is_installed(available_fonts[i]);
         
-        for (unsigned short j = 0; j < get_terminal_width() / 2 - strlen(available_fonts[i]); j++)
+        for (unsigned short j = 0; j < padding; j++)
             putc(' ', stdout);
 
         printf("%s\n\n", is_installed ? "\033[32minstalled\033[0m" : "\033[37mnot installed\033[0m");
